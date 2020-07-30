@@ -1,4 +1,4 @@
-rank,name,year,total
+rank,name_international,year,international_revenue_usd
 1,Avengers: endgame,2019,2797800564
 2,Avatar,2009,2790439000
 3,Titanic,1997,2195169138
@@ -6722,7 +6722,7 @@ rank,name,year,total
 6722,The return,2006,11994195
 6723,The king and i,1999,11993021
 6724,The assassin,2015,11991669
-6725,Eine ganz heisse nummer,2011,11989112
+6725,Eine ganz heiße nummer,2011,11989112
 6726,Phantasm,1979,11988469
 6727,Shinobi: heart under blade,2005,11987868
 6728,Outrage coda,2017,11983269

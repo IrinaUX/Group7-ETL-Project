@@ -9,30 +9,32 @@ name text
 
 select * from domestic_revenue;
 
-drop table international;
-select * from international;
+drop table international_revenue;
+select * from international_revenue;
 
 -- Join two tables on name column
 select * from domestic_revenue 
-join international 
-on (domestic_revenue.name = international.name);
+join international
+on (domestic_revenue.name = international_revenue.name);
 
 -- Create total_revenue table from joining domestic and international revenues
 create table total_revenue as
-select * from domestic_revenue 
-outer join international 
+select * from domestic_revenue
+outer join international_revenue 
 on (international.name = domestic.name);
 
-drop table test;
-CREATE TABLE test AS
-SELECT     international.ww_gross, international.name 
-FROM       international
-LEFT JOIN  domestic_revenue *
-ON         international.name = domestic_revenue.name;
-select * from test;
+-- Create total_revenue table from joining domestic_revenue_v2 and international_v2 revenues
+drop table combined_revenue;
 
--- CREATE TABLE merged AS
--- SELECT     international.name, international.name  
--- FROM       international
--- LEFT JOIN  domestic_revenue
--- ON         domestic_revenue.name = international.name;
+create table combined_revenue as
+select * from domestic_revenue 
+full outer join international_revenue 
+on domestic_revenue.name_domestic = international_revenue.name_international;
+-- order by international_revenue_usd desc;
+
+select * from international_revenue;
+
+select * from combined_revenue;
+
+select name_international, international_revenue_usd, director 
+from combined_revenue;
