@@ -38,3 +38,5 @@ select * from combined_revenue;
 
 select name_international, international_revenue_usd, director 
 from combined_revenue;
+
+select * from ww_top_50_movies;
