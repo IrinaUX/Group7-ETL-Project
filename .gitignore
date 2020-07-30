@@ -132,4 +132,4 @@ dmypy.json
 secret.py
 
 # Specific folders
-Resources/
+csv_files/
