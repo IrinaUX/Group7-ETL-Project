@@ -59,6 +59,16 @@ CREATE TABLE "Star_actor" (
     "actor" VARCHAR(255)   NOT NULL
 );
 
+CREATE TABLE "Best_200_directors" (
+    "id" SERIAL   NOT NULL,
+    "directors" VARCHAR(255)   NOT NULL
+);
+
+CREATE TABLE "Best_100_actors" (
+    "id" SERIAL   NOT NULL,
+    "actors" VARCHAR(255)   NOT NULL
+);
+
 ALTER TABLE "Director" ADD CONSTRAINT "fk_Director_name" FOREIGN KEY("name")
 REFERENCES "Movies" ("name");
 
@@ -79,3 +89,10 @@ REFERENCES "Movies" ("name");
 
 ALTER TABLE "Star_actor" ADD CONSTRAINT "fk_Star_actor_name" FOREIGN KEY("name")
 REFERENCES "Movies" ("name");
+
+ALTER TABLE "Best_200_directors" ADD CONSTRAINT "fk_Best_200_directors_directors" FOREIGN KEY("directors")
+REFERENCES "Director" ("director");
+
+ALTER TABLE "Best_100_actors" ADD CONSTRAINT "fk_Best_100_actors_actors" FOREIGN KEY("actors")
+REFERENCES "Star_actor" ("actor");
+

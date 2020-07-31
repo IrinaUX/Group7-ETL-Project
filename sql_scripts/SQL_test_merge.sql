@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS country;
 DROP TABLE IF EXISTS company;
 DROP TABLE IF EXISTS movie_genre;
 DROP TABLE IF EXISTS writer;
+DROP TABLE IF EXISTS ww_top_50_movies;
+DROP TABLE IF EXISTS best_100_actors;
 
 
 -- TABLE -- DOMESTIC GROSS & INFORMATION
@@ -93,4 +95,13 @@ SELECT * FROM star_actor;
 
 -- Table writer
 SELECT * FROM writer;
+
+-- Table best_200_directors
+SELECT * FROM best_200_directors;
+
+-- Table total_gross_info
+SELECT * FROM total_gross_info;
+
+-- Table best_100_actors
+SELECT * FROM best_100_actors;
 
