@@ -1,6 +1,12 @@
 DROP TABLE IF EXISTS domestic_gross_info;
 DROP TABLE IF EXISTS total_gross_info;
 DROP TABLE IF EXISTS combined_gross_info;
+DROP TABLE IF EXISTS star_actor;
+DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS company;
+DROP TABLE IF EXISTS movie_genre;
+DROP TABLE IF EXISTS writer;
+
 
 -- TABLE -- DOMESTIC GROSS & INFORMATION
 CREATE TABLE domestic_gross_info (
@@ -66,3 +72,25 @@ ALTER TABLE combined_gross_info DROP name_total;
 
 -- FINAL TABLE
 SELECT * FROM combined_gross_info;
+
+-- Table country
+SELECT * FROM country;
+
+-- Table company
+SELECT * FROM company;
+
+-- Table movie_genre
+SELECT * FROM movie_genre;
+
+-- Table star_actor
+SELECT * FROM star_actor;
+
+-- Table rating
+SELECT * FROM rating;
+
+-- Table star_actor
+SELECT * FROM star_actor;
+
+-- Table writer
+SELECT * FROM writer;
+
