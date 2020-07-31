@@ -5,16 +5,11 @@
 -- Physical
 CREATE TABLE "Movies" (
     "id" INT   NOT NULL,
-    "budget" BIGINT   NOT NULL,
     "domestic_revenue_usd" BIGINT   NOT NULL,
     "international_revenue_usd" BIGINT   NOT NULL,
     "total_revenue_usd" BIGINT   NOT NULL,
     "name" VARCHAR(255)   NOT NULL,
     "released" DATE   NOT NULL,
-    "runtime" INT   NOT NULL,
-    "score" DOUBLE   NOT NULL,
-    "votes" BIGINT   NOT NULL,
-    "year" INT   NOT NULL,
     "rank" BIGINT   NOT NULL,
     CONSTRAINT "pk_Movies" PRIMARY KEY (
         "name"

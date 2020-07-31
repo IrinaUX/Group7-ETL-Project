@@ -22,20 +22,9 @@ SELECT name, total_revenue_usd, domestic_revenue_usd, international_revenue_usd,
 FROM combined_gross_info
 ORDER BY total_revenue_usd DESC;
 
--- SORT BY total_revenue_usd ind descending order
-UPDATE movies 
-SET Number = 1 
-FROM movies
-INNER JOIN 
-(SELECT ID, row_number() OVER (ORDER BY ID DESC) as rowNumber
-FROM Test) drRowNumbers ON drRowNumbers.ID = Test.ID
-
-
-SELECT * FROM movies
-ORDER BY total_revenue_usd DESC;
-
 -- TABLE movies
 SELECT * FROM movies;
+SELECT COUNT(*) FROM movies;
 
 -- Table country
 SELECT * FROM country;
@@ -50,7 +39,7 @@ SELECT * FROM movie_genre;
 SELECT * FROM star_actor;
 
 -- Table rating
-SELECT * FROM rating;
+SELECT * FROM movie_rating;
 
 -- Table star_actor
 SELECT * FROM star_actor;
@@ -61,20 +50,10 @@ SELECT * FROM writer;
 -- Table best_200_directors
 SELECT * FROM best_200_directors;
 
--- Table total_gross_info
-SELECT * FROM total_gross_info;
-
 -- Table best_100_actors
 SELECT * FROM best_100_actors;
 
--- DROP TABLE IF EXISTS domestic_gross_info;
--- DROP TABLE IF EXISTS total_gross_info;
--- DROP TABLE IF EXISTS combined_gross_info;
--- DROP TABLE IF EXISTS star_actor;
--- DROP TABLE IF EXISTS country;
--- DROP TABLE IF EXISTS company;
--- DROP TABLE IF EXISTS movie_genre;
--- DROP TABLE IF EXISTS writer;
--- DROP TABLE IF EXISTS ww_top_50_movies;
--- DROP TABLE IF EXISTS best_100_actors;
-
+-- DROP unnecessary tables
+DROP TABLE IF EXISTS domestic_gross_info;
+DROP TABLE IF EXISTS total_gross_info;
+DROP TABLE IF EXISTS combined_gross_info;
