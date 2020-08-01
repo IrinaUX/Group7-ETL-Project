@@ -1,12 +1,27 @@
-Group 7 ETL Project Report
-EXTRACT:
-	The premise of our ETL project take a movie dataset that contained three decades of movie data from 1986-2016 from Kaggle (https://www.kaggle.com/danielgrijalvas/movies?select=movies.csv) and build upon it with another set of data.  The original Kaggle data set contained 15 columns of information, but regarding box office revenue it only contained the domestic box office revenue.  We decided that our second source of data should have the international or total box office revenue for each movie so we could merge that data into our .csv downloaded from Kaggle (movies.csv).  We created a for loop to web scrape the total (domestic + international) box office revenue for 10,000 movies from Box Office Mojo (https://www.boxofficemojo.com/chart/top_lifetime_gross/?area=XWW). 
-Note that the loop code needs to be adjusted for Mac or Windows users, and the location of your chromedriver.exe path. 
+# Group 7 ETL Project Report
 
-TRANSFORM:
-	We then cleaned our data inside the scrape_final.ipynb file and prepared it for export into SQL.  This involved dropping any duplicate data, changing datatypes of certain columns into integer or datetime format, and much more organizational steps.  Instructors or graders of this project will need to run the scrape_final.ipynb file from top to bottom. Instructions are included in the file, along with all steps taken to clean the data.
-Duplication Drop Preparation:
+This is the report on the Group 7 ETL project. 
+
+## EXTRACT:
+
+
+The premise of our ETL project take a movie dataset that contained three decades of movie data from 1986-2016 from Kaggle and build upon it with another set of data.  The original Kaggle data set contained 15 columns of information, but regarding box office revenue it only contained the domestic box office revenue.  We decided that our second source of data should have the international or total box office revenue for each movie so we could merge that data into our .csv downloaded from Kaggle (movies.csv).  We created a for loop to web scrape the total (domestic + international) box office revenue for 10,000 movies from Box Office Mojo (https://www.boxofficemojo.com/chart/top_lifetime_gross/?area=XWW).
+Two data sources were used to collect the required data
+
+* [Kaggle](https://www.kaggle.com/danielgrijalvas/movies?select=movies.csv) 
+
+* [BoxOfficeMojo](https://www.boxofficemojo.com/chart/top_lifetime_gross/?area=XWW)
+
+
+* Note that the loop code needs to be adjusted for Mac or Windows users, and the location of your chromedriver.exe path. 
+
+## TRANSFORM:
+
+We then cleaned our data inside the scrape_final.ipynb file and prepared it for export into SQL.  This involved dropping any duplicate data, changing datatypes of certain columns into integer or datetime format, and much more organizational steps.  Instructors or graders of this project will need to run the scrape_final.ipynb file from top to bottom. Instructions are included in the file, along with all steps taken to clean the data.
+
+* Duplication Drop Preparation:
  
+![notebook](images/md2_webpage_1.png)
 
 
 
@@ -32,7 +47,7 @@ The movies without strinng matches (2362/7040) had null values that we had to co
 Afterwards, we added Primary Keys to all our tables and defined our Foreign Keys.
  
 
-Load:
+## LOAD:
 	Our database is movies_dB which contains the following tables:
 •	Movies
 •	Director
