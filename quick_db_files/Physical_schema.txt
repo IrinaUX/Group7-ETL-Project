@@ -1,78 +1,82 @@
 # Physical
 movies
 - 
-movie_id SERIAL PK
-country VARCHAR(255)
-company VARCHAR(255)
-genre VARCHAR(255)
-director VARCHAR(255)
-actor VARCHAR(255)
-writer VARCHAR(255)
-rating VARCHAR(20)
-rank BIGINT
-name VARCHAR(255)
+movie_id SERIAL PK 
+country_id VARCHAR(40) 
+company_id VARCHAR(40) 
+genre_id VARCHAR(40) FK >- genre.genre_id
+director_id VARCHAR(40) 
+actor_id VARCHAR(40)
+writer_id VARCHAR(40) FK >- writer.writer_id
+rating_id VARCHAR(20) FK >- rating.rating_id
+name VARCHAR(40)
 release_date DATE
 domestic_revenue_usd BIGINT
 international_revenue_usd BIGINT
-
-movie_director
-- 
-director_id BIGINT 
-movie_id BIGINT FK >-< movies.movie_id
-director_name  VARCHAR(255) FK >-< movies.director
-
-movie_rating
-- 
-id SERIAL 
-movie_id BIGINT FK FK >-< movies.movie_id
-rating BIGINT FK >-< movies.rating
-
-movie_country
-- 
-id SERIAL
-movie_id BIGINT FK >-< movies.movie_id
-country VARCHAR(255) FK >-< movies.country
-
-movie_genre
-- 
-movie_id BIGINT FK >-< movies.movie_id
-genre VARCHAR(255) FK >-< movies.genre
-id SERIAL
-
-movie_company
--
-id SERIAL
-movie_id BIGINT FK >-< movies.movie_id
-company VARCHAR(255) FK >-< movies.company
-
-movie_writer
-- 
-id SERIAL
-movie_id BIGINT FK >-< movies.movie_id
-writer  VARCHAR(255) FK >-< movies.writer
-
-movie_actor
-- 
-id SERIAL
-movie_id BIGINT FK >-< movies.movie_id
-actor_name VARCHAR(255) FK >-< movies.actor
-
-combined_gross_info
-- 
-country VARCHAR(255) FK >-< movie_country.country
-company VARCHAR(255) FK >-< movie_company.company
-movie_id BIGINT FK >-< movies.movie_id
-director VARCHAR(255)
-genre VARCHAR(255) FK >-< movie_genre.genre
-name VARCHAR(255)
-release_date DATE
-actor VARCHAR(255)
-writer VARCHAR(255)
-rank BIGINT
-rating VARCHAR(20
-domestic_revenue_usd BIGINT FK >-< movies.domestic_revenue_usd
-international_revenue_usd BIGINT FK >-< movies.international_revenue_usd
 total_revenue_usd BIGINT 
+
+writer
+- 
+writer_id SERIAL PK
+writer  VARCHAR(255) 
+writer_rank INT
+
+director
+- 
+director_id SERIAL PK 
+director VARCHAR(40)
+director_rank INT
+
+director_movie
+- 
+director_id BIGINT FK >- director.director_id
+movie_id BIGINT FK >- movies.movie_id
+
+company_movie
+- 
+company_id BIGINT FK >- company.company_id
+movie_id BIGINT FK >- movies.movie_id
+
+company
+-
+company_id SERIAL PK
+company VARCHAR(255) 
+company_rank INT
+
+actor
+- 
+actor_id SERIAL PK
+actor VARCHAR(255) 
+actor_rank INT
+
+actor_movie
+- 
+actor_id INT FK >- actor.actor_id
+movie_id BIGINT FK >- movies.movie_id
+
+
+genre
+- 
+genre_id SERIAL PK 
+genre VARCHAR(255) 
+
+rating
+- 
+rating_id SERIAL PK 
+rating BIGINT 
+
+# DBD limit on number of table to 10
+# Therefore, comment out country, 
+# country
+#- 
+#country_id SERIAL PK
+#country VARCHAR(255) 
+
+
+
+
+
+
 
 
 
