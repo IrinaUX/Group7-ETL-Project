@@ -1,0 +1,58 @@
+# Physical
+movies
+- 
+movie_id SERIAL PK
+rank BIGINT
+domestic_revenue_usd BIGINT
+international_revenue_usd BIGINT
+total_revenue_usd BIGINT
+name VARCHAR(255)
+release_date DATE
+director_name VARCHAR(255)
+actor_name VARCHAR(255)
+genre VARCHAR(255)
+rating VARCHAR(20)
+writer VARCHAR(255)
+
+movie_director
+- 
+director_id BIGINT 
+movie_id BIGINT FK >-< movies.movie_id
+director_name  VARCHAR(255) FK >-< movies.director_name
+
+movie_rating
+- 
+id SERIAL 
+movie_id BIGINT FK FK >-< movies.movie_id
+rating BIGINT FK >-< movies.rating
+
+country
+- 
+id SERIAL
+movie_id BIGINT FK >-< movies.movie_id
+country VARCHAR(255) 
+
+movie_genre
+- 
+id SERIAL
+movie_id BIGINT FK >-< movies.movie_id
+genre VARCHAR(255) FK >-< movies.genre
+
+company
+-
+id SERIAL
+movie_id BIGINT FK >-< movies.movie_id
+company VARCHAR(255)
+
+movie_writer
+- 
+id SERIAL
+movie_id BIGINT FK >-< movies.movie_id
+writer  VARCHAR(255) FK >-< movies.writer
+
+movie_actor
+- 
+id SERIAL
+movie_id BIGINT FK >-< movies.movie_id
+actor_name VARCHAR(255) FK >-< movies.actor_name
+
