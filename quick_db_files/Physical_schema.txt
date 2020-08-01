@@ -2,23 +2,24 @@
 movies
 - 
 movie_id SERIAL PK
+country VARCHAR(255)
+company VARCHAR(255)
+genre VARCHAR(255)
+director VARCHAR(255)
+actor VARCHAR(255)
+writer VARCHAR(255)
+rating VARCHAR(20)
 rank BIGINT
-domestic_revenue_usd BIGINT
-international_revenue_usd BIGINT
-total_revenue_usd BIGINT
 name VARCHAR(255)
 release_date DATE
-director_name VARCHAR(255)
-actor_name VARCHAR(255)
-genre VARCHAR(255)
-rating VARCHAR(20)
-writer VARCHAR(255)
+domestic_revenue_usd BIGINT
+international_revenue_usd BIGINT
 
 movie_director
 - 
 director_id BIGINT 
 movie_id BIGINT FK >-< movies.movie_id
-director_name  VARCHAR(255) FK >-< movies.director_name
+director_name  VARCHAR(255) FK >-< movies.director
 
 movie_rating
 - 
@@ -26,23 +27,23 @@ id SERIAL
 movie_id BIGINT FK FK >-< movies.movie_id
 rating BIGINT FK >-< movies.rating
 
-country
+movie_country
 - 
 id SERIAL
 movie_id BIGINT FK >-< movies.movie_id
-country VARCHAR(255) 
+country VARCHAR(255) FK >-< movies.country
 
 movie_genre
 - 
-id SERIAL
 movie_id BIGINT FK >-< movies.movie_id
 genre VARCHAR(255) FK >-< movies.genre
+id SERIAL
 
-company
+movie_company
 -
 id SERIAL
 movie_id BIGINT FK >-< movies.movie_id
-company VARCHAR(255)
+company VARCHAR(255) FK >-< movies.company
 
 movie_writer
 - 
@@ -54,5 +55,27 @@ movie_actor
 - 
 id SERIAL
 movie_id BIGINT FK >-< movies.movie_id
-actor_name VARCHAR(255) FK >-< movies.actor_name
+actor_name VARCHAR(255) FK >-< movies.actor
+
+combined_gross_info
+- 
+country VARCHAR(255) FK >-< movie_country.country
+company VARCHAR(255) FK >-< movie_company.company
+movie_id BIGINT FK >-< movies.movie_id
+director VARCHAR(255)
+genre VARCHAR(255) FK >-< movie_genre.genre
+name VARCHAR(255)
+release_date DATE
+actor VARCHAR(255)
+writer VARCHAR(255)
+rank BIGINT
+rating VARCHAR(20
+domestic_revenue_usd BIGINT FK >-< movies.domestic_revenue_usd
+international_revenue_usd BIGINT FK >-< movies.international_revenue_usd
+total_revenue_usd BIGINT 
+
+
+
+
+
 
