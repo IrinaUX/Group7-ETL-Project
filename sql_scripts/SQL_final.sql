@@ -1,32 +1,12 @@
--- Check tables created from notebook tables
-SELECT * FROM company;
-SELECT COUNT(*) FROM company;
-SELECT * FROM country;
-SELECT COUNT(*) FROM country;
-SELECT * FROM director_movie;
-SELECT COUNT(*) FROM director_movie;
-SELECT * FROM domestic_gross_info;
-SELECT COUNT(*) FROM domestic_gross_info;
-SELECT * FROM movie_genre;
-SELECT COUNT(*) FROM movie_genre;
-SELECT * FROM movie_rating;
-SELECT COUNT(*) FROM movie_rating;
-SELECT * FROM star_actor;
-SELECT COUNT(*) FROM star_actor;
-SELECT * FROM total_gross_info;
-SELECT COUNT(*) FROM total_gross_info;
-SELECT * FROM writer;
-SELECT COUNT(*) FROM writer;
-
--- CREATE rank table
+-- CREATE combined_gross_info table
 -- JOIN TABLES ON NAME
 CREATE TABLE combined_gross_info AS
 SELECT * FROM total_gross_info 
 LEFT JOIN domestic_gross_info
-ON total_gross_info.name_total = domestic_gross_info.name;
+ON total_gross_info.name = domestic_gross_info.name_domestic;
 
 -- View combined_gross_info table
-SELECT * FROM combined_gross_info WHERE rank=1;
+SELECT * FROM combined_gross_info WHERE rank=7040;
 
 -- Alter to add international_revenue_usd column
 -- CREATE COLUMN 'international_revenue_usd' and compute from total minus domestic
@@ -43,15 +23,20 @@ SELECT * FROM combined_gross_info WHERE rank=1;
 
 -- Create movies table
 CREATE TABLE movies AS
-SELECT rank, name_total, total_revenue_usd, domestic_revenue_usd, international_revenue_usd, release_date,
+SELECT rank, name, total_revenue_usd, domestic_revenue_usd, international_revenue_usd, release_date,
 	country, company, genre, director, star, writer, rating
 FROM combined_gross_info
 ORDER BY total_revenue_usd DESC;
 
+-- View movies table
+SELECT * FROM movies;
+
+-- Query Top 100 directors by rank
+SELECT * FROM movies WHERE rank ;
 
 -- TEST
 SELECT * FROM domestic_gross_info
-WHERE rating IS NOT NULL;
+WHERE rating IS NULL;
 
 SELECT name, country FROM domestic_gross_info WHERE country='USA';
 ALTER TABLE country ADD FOREIGN KEY (total_revenue_usd.country); -- Add PRIMARY KEY contstraint

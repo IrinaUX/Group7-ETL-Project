@@ -1,3 +1,24 @@
+-- Check tables created from notebook tables
+SELECT * FROM company;
+SELECT COUNT(*) FROM company;
+SELECT * FROM country;
+SELECT COUNT(*) FROM country;
+SELECT * FROM director_movie;
+SELECT COUNT(*) FROM director_movie;
+SELECT * FROM domestic_gross_info;
+SELECT COUNT(*) FROM domestic_gross_info;
+SELECT * FROM movie_genre;
+SELECT COUNT(*) FROM movie_genre;
+SELECT * FROM movie_rating;
+SELECT COUNT(*) FROM movie_rating;
+SELECT * FROM star_actor;
+SELECT COUNT(*) FROM star_actor;
+SELECT * FROM total_gross_info;
+SELECT COUNT(*) FROM total_gross_info;
+SELECT * FROM writer;
+SELECT COUNT(*) FROM writer;
+
+
 -- DROP ALL TABLES 
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS ranking;
