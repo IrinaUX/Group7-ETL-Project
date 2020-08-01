@@ -31,8 +31,20 @@ ORDER BY total_revenue_usd DESC;
 -- View movies table
 SELECT * FROM movies;
 
+-- Add missing director and star information
+-- JOIN TABLES ON NAME
+-- add directors column to total table
+ALTER TABLE total_gross_info ADD COLUMN director_missing BIGINT;
+CREATE TABLE movies_with_missing_directors AS
+SELECT * FROM movies
+LEFT JOIN fetched_missing
+ON movies.name = fetched_missing.name_missing
+ORDER BY rank ASC LIMIT 100;
+
 -- Query Top 100 directors by rank
-SELECT * FROM movies WHERE rank ;
+CREATE TABLE Top_100_directors
+SELECT rank, director, name, star, total_revenue_usd FROM movies 
+ORDER BY rank ASC LIMIT 100;
 
 -- TEST
 SELECT * FROM domestic_gross_info

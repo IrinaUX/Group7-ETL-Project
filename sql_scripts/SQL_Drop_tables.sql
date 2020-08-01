@@ -36,3 +36,5 @@ DROP TABLE IF EXISTS movie_rating;
 DROP TABLE IF EXISTS company;
 DROP TABLE IF EXISTS country;
 DROP TABLE IF EXISTS director_movie;
+DROP TABLE IF EXISTS fetched_missing;
+
