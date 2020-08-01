@@ -57,15 +57,15 @@ Afterwards, we added Primary Keys to all our tables and defined our Foreign Keys
 ### Load:
 
 Our database is movies_dB which contains the following tables:
-•	Movies
-•	Director
-•	Actor
-•	Writer
-•	Company
-•	Genre
-•	Rating
-•	Actor_Movie
-•	Director_Movie
-•	Company_Movie
+* Movies
+* Director
+* Actor
+* Writer
+* Company
+* Genre
+* Rating
+* Actor_Movie
+* Director_Movie
+* Company_Movie
 
 The actor_movie, director_movie, and company_movie tables are in place to connect the actor, director, and company tables to the movies table (main table). One idea we were going to implement was rank columns for actors, directors, and companies.  The rank would be determined by sum of the actors, directors, or companies total_revenue_usd.  Unfortunately, we were restricted on time and this would surpass the ETL process, but gives a good idea of where how the foundation of our data could be used.
