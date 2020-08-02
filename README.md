@@ -36,7 +36,7 @@ We then cleaned our data inside the scrape_final.ipynb file and prepared it for 
 
 We also created an ERD to give us a template of how we were going to prepare our data in SQL. This creates the foundation for the project moving forward. The ERD looks as follows:
 
-![QuickDB](images/DB_Overview.png)
+![QuickDB](images/1_QuickDB.png)
 
 Once the scrape_final.ipynb file is completed, you will open SQL_final.sql in PostgresSQL.  The first step is to do a Left join on the two tables since we are only concerned about expanding our original Kaggle dataset with movies from 1986-2016 (The data that was scraped from Box Office Mojo contains 10,000 movies, some of which are before 1986 and after 2016) to create a combined_gross_info table. Since we have gathered data for domestic & total box office revenue for each movie, we can now calculate the international box office revenue.  The SQL code will look as follows:
 

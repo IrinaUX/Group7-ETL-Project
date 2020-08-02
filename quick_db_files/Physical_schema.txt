@@ -2,12 +2,12 @@
 movies
 - 
 movie_id SERIAL PK 
-country VARCHAR(40) 
+country VARCHAR(100) 
 genre_id BIGINT FK >- genre.genre_id
 writer_id BIGINT FK >- writer.writer_id
 rating_id BIGINT FK >- rating.rating_id
-name VARCHAR(40)
-year DATE
+name VARCHAR(100)
+year INTEGER
 domestic_revenue_usd BIGINT
 international_revenue_usd BIGINT
 total_revenue_usd BIGINT 
@@ -22,7 +22,7 @@ director
 director_id SERIAL PK 
 director VARCHAR(40)
 
-director_movie
+movie_director
 - 
 director_id BIGINT FK >- director.director_id
 movie_id BIGINT FK >- movies.movie_id
@@ -36,14 +36,13 @@ company
 -
 company_id SERIAL PK
 company VARCHAR(255) 
-company_rank INT
 
 actor
 - 
 actor_id SERIAL PK
 actor VARCHAR(255) 
 
-actor_movie
+movie_actor
 - 
 actor_id INT FK >- actor.actor_id
 movie_id BIGINT FK >- movies.movie_id
@@ -57,14 +56,8 @@ genre VARCHAR(255)
 rating
 - 
 rating_id SERIAL PK 
-rating BIGINT 
+rating VARCHAR(30) 
 
-# DBD limit on number of table to 10
-# Therefore, comment out country, 
-# country
-# - 
-# country_id SERIAL PK
-# country VARCHAR(255) 
 
 
 

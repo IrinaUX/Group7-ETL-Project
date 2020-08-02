@@ -1,14 +1,14 @@
 -- Check tables created from notebook tables
-SELECT * FROM movies;
-SELECT * FROM writer;
-SELECT * FROM director;
-SELECT * FROM movie_director;
-SELECT * FROM company_movie;
-SELECT * FROM company;
 SELECT * FROM actor;
-SELECT * FROM movie_actor;
+SELECT * FROM company;
+SELECT * FROM company_movie;
+SELECT * FROM director;
 SELECT * FROM genre;
+SELECT * FROM movie_actor;
+SELECT * FROM movie_director;
+SELECT * FROM movies;
 SELECT * FROM rating;
+SELECT * FROM writer;
 
 
 SELECT COUNT(*) FROM company_movie;
@@ -22,28 +22,31 @@ SELECT COUNT(*) FROM total_gross_info;
 SELECT COUNT(*) FROM writer;
 
 
--- DROP ALL TABLES 
-DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS ranking;
-DROP TABLE IF EXISTS movies_rank;
-DROP TABLE IF EXISTS domestic_revenue_usd;
-DROP TABLE IF EXISTS international_revenue_usd;
-DROP TABLE IF EXISTS total_gross_info;
-DROP TABLE IF EXISTS domestic_gross_info;
-DROP TABLE IF EXISTS combined_gross_info;
+-- DROP MAIN TABLES 
+DROP TABLE IF EXISTS actor CASCADE;
+DROP TABLE IF EXISTS company CASCADE;
+DROP TABLE IF EXISTS company_movie CASCADE;
+DROP TABLE IF EXISTS director CASCADE;
+DROP TABLE IF EXISTS genre CASCADE;
+DROP TABLE IF EXISTS movie_actor CASCADE;
+DROP TABLE IF EXISTS movie_director CASCADE;
+DROP TABLE IF EXISTS movies CASCADE;
+DROP TABLE IF EXISTS rating CASCADE;
+DROP TABLE IF EXISTS writer CASCADE;
 
-DROP TABLE IF EXISTS writer;
-DROP TABLE IF EXISTS actor;
-DROP TABLE IF EXISTS genre;
-DROP TABLE IF EXISTS rating;
-DROP TABLE IF EXISTS director;
-DROP TABLE IF EXISTS star_actor;
-DROP TABLE IF EXISTS movie_genre;
-DROP TABLE IF EXISTS movie_rating;
-DROP TABLE IF EXISTS company;
-DROP TABLE IF EXISTS country;
-DROP TABLE IF EXISTS temp_movie_id_name;
-
+-- DROP OTHER TABLES
+DROP TABLE IF EXISTS genre CASCADE;
+DROP TABLE IF EXISTS rating CASCADE;
+DROP TABLE IF EXISTS director CASCADE;
+DROP TABLE IF EXISTS star_actor CASCADE;
+DROP TABLE IF EXISTS movie_genre CASCADE;
+DROP TABLE IF EXISTS movie_rating CASCADE;
+DROP TABLE IF EXISTS company CASCADE;
+DROP TABLE IF EXISTS country CASCADE;
+DROP TABLE IF EXISTS temp_movie_id_name CASCADE;
+DROP TABLE IF EXISTS company_movie CASCADE;
+DROP TABLE IF EXISTS movie_actor CASCADE;
+DROP TABLE IF EXISTS movie_director CASCADE;
 DROP TABLE IF EXISTS director_movie;
 DROP TABLE IF EXISTS fetched_missing;
 
