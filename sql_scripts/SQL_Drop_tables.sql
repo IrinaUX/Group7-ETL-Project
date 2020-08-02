@@ -1,15 +1,17 @@
 -- Check tables created from notebook tables
-SELECT * FROM rating;
-SELECT * FROM country;
-SELECT * FROM actor;
-SELECT * FROM company;
-SELECT * FROM genre;
+SELECT * FROM movies;
 SELECT * FROM writer;
 SELECT * FROM director;
+SELECT * FROM movie_director;
+SELECT * FROM company_movie;
+SELECT * FROM company;
+SELECT * FROM actor;
+SELECT * FROM movie_actor;
+SELECT * FROM genre;
+SELECT * FROM rating;
 
-SELECT * FROM movies;
 
-SELECT COUNT(*) FROM company;
+SELECT COUNT(*) FROM company_movie;
 SELECT COUNT(*) FROM country;
 SELECT COUNT(*) FROM director_movie;
 SELECT COUNT(*) FROM domestic_gross_info;
@@ -40,6 +42,7 @@ DROP TABLE IF EXISTS movie_genre;
 DROP TABLE IF EXISTS movie_rating;
 DROP TABLE IF EXISTS company;
 DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS temp_movie_id_name;
 
 DROP TABLE IF EXISTS director_movie;
 DROP TABLE IF EXISTS fetched_missing;

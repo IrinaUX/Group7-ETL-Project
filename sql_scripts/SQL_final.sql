@@ -13,6 +13,15 @@ SELECT * FROM combined_gross_info;
 ALTER TABLE combined_gross_info ADD COLUMN international_revenue_usd BIGINT;
 UPDATE combined_gross_info SET international_revenue_usd = (total_revenue_usd - domestic_revenue_usd);
 
+-- Create movie_id, name table
+create table temp_movie_id_name as
+select movie_id, name from movies;
+
+-- Create temp_movie_name_actor_id table
+create table temp_actor_id_name as
+select * from movies;
+
+
 -- Replace null values with 0 in combined_gross_info
 UPDATE combined_gross_info SET international_revenue_usd = 0 WHERE international_revenue_usd IS NULL;
 UPDATE combined_gross_info SET domestic_revenue_usd = 0 WHERE domestic_revenue_usd IS NULL;
@@ -45,7 +54,7 @@ SELECT actor_id FROM actor;
 
 -- CREATE actor_movie table from movies table
 CREATE TABLE actor_movie AS
-SELECT movie_id FROM movies  
+SELECT (movie_id, name, director) FROM movies  
 OUTER JOIN total_gross_info
 ON total_gross_info.name = domestic_gross_info.name_domestic;
 

@@ -6,14 +6,11 @@
 CREATE TABLE "movies" (
     "movie_id" SERIAL   NOT NULL,
     "country" VARCHAR(40)   NOT NULL,
-    "company" VARCHAR(40)   NOT NULL,
-    "genre" VARCHAR(40)   NOT NULL,
-    "director" VARCHAR(40)   NOT NULL,
-    "actor" VARCHAR(40)   NOT NULL,
-    "writer" VARCHAR(40)   NOT NULL,
-    "rating" VARCHAR(20)   NOT NULL,
+    "genre_id" BIGINT   NOT NULL,
+    "writer_id" BIGINT   NOT NULL,
+    "rating_id" BIGINT   NOT NULL,
     "name" VARCHAR(40)   NOT NULL,
-    "release_date" DATE   NOT NULL,
+    "year" INTEGER   NOT NULL,
     "domestic_revenue_usd" BIGINT   NOT NULL,
     "international_revenue_usd" BIGINT   NOT NULL,
     "total_revenue_usd" BIGINT   NOT NULL,
@@ -22,46 +19,34 @@ CREATE TABLE "movies" (
      )
 );
 
+CREATE TABLE "writer" (
+    "writer_id" SERIAL   NOT NULL,
+    "writer" VARCHAR(255)   NOT NULL,
+    CONSTRAINT "pk_writer" PRIMARY KEY (
+        "writer_id"
+     )
+);
+
 CREATE TABLE "director" (
     "director_id" SERIAL   NOT NULL,
-    "movie_id" BIGINT   NOT NULL,
-    "director" VARCHAR(40   NOT NULL,
-    "director_rank" INT   NOT NULL,
+    "director" VARCHAR(40)   NOT NULL,
     CONSTRAINT "pk_director" PRIMARY KEY (
         "director_id"
      )
 );
 
-CREATE TABLE "rating" (
-    "rating_id" SERIAL   NOT NULL,
-    "movie_id" BIGINT   NOT NULL,
-    "rating" BIGINT   NOT NULL,
-    CONSTRAINT "pk_rating" PRIMARY KEY (
-        "rating_id"
-     )
+CREATE TABLE "director_movie" (
+    "director_id" BIGINT   NOT NULL,
+    "movie_id" BIGINT   NOT NULL
 );
 
-CREATE TABLE "country" (
-    "country_id" SERIAL   NOT NULL,
-    "movie_id" BIGINT   NOT NULL,
-    "country" VARCHAR(255)   NOT NULL,
-    CONSTRAINT "pk_country" PRIMARY KEY (
-        "country_id"
-     )
-);
-
-CREATE TABLE "genre" (
-    "genre_id" SERIAL   NOT NULL,
-    "movie_id" SERIAL   NOT NULL,
-    "genre" VARCHAR(255)   NOT NULL,
-    CONSTRAINT "pk_genre" PRIMARY KEY (
-        "genre_id"
-     )
+CREATE TABLE "company_movie" (
+    "company_id" BIGINT   NOT NULL,
+    "movie_id" BIGINT   NOT NULL
 );
 
 CREATE TABLE "company" (
     "company_id" SERIAL   NOT NULL,
-    "movie_id" BIGINT   NOT NULL,
     "company" VARCHAR(255)   NOT NULL,
     "company_rank" INT   NOT NULL,
     CONSTRAINT "pk_company" PRIMARY KEY (
@@ -69,65 +54,59 @@ CREATE TABLE "company" (
      )
 );
 
-CREATE TABLE "writer" (
-    "writer_id" SERIAL   NOT NULL,
-    "movie_id" BIGINT   NOT NULL,
-    "writer" VARCHAR(255)   NOT NULL,
-    "writer_rank" INT   NOT NULL,
-    CONSTRAINT "pk_writer" PRIMARY KEY (
-        "writer_id"
-     )
-);
-
 CREATE TABLE "actor" (
     "actor_id" SERIAL   NOT NULL,
-    "movie_id" BIGINT   NOT NULL,
     "actor" VARCHAR(255)   NOT NULL,
-    "actor_rank" INT   NOT NULL,
     CONSTRAINT "pk_actor" PRIMARY KEY (
         "actor_id"
      )
 );
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_country" FOREIGN KEY("country")
-REFERENCES "country" ("country");
+CREATE TABLE "actor_movie" (
+    "actor_id" INT   NOT NULL,
+    "movie_id" BIGINT   NOT NULL
+);
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_company" FOREIGN KEY("company")
-REFERENCES "company" ("company");
+CREATE TABLE "genre" (
+    "genre_id" SERIAL   NOT NULL,
+    "genre" VARCHAR(255)   NOT NULL,
+    CONSTRAINT "pk_genre" PRIMARY KEY (
+        "genre_id"
+     )
+);
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_genre" FOREIGN KEY("genre")
-REFERENCES "genre" ("genre");
+CREATE TABLE "rating" (
+    "rating_id" SERIAL   NOT NULL,
+    "rating" BIGINT   NOT NULL,
+    CONSTRAINT "pk_rating" PRIMARY KEY (
+        "rating_id"
+     )
+);
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_director" FOREIGN KEY("director")
-REFERENCES "director" ("director");
+ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_genre_id" FOREIGN KEY("genre_id")
+REFERENCES "genre" ("genre_id");
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_actor" FOREIGN KEY("actor")
-REFERENCES "actor" ("actor");
+ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_writer_id" FOREIGN KEY("writer_id")
+REFERENCES "writer" ("writer_id");
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_writer" FOREIGN KEY("writer")
-REFERENCES "writer" ("writer");
+ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_rating_id" FOREIGN KEY("rating_id")
+REFERENCES "rating" ("rating_id");
 
-ALTER TABLE "movies" ADD CONSTRAINT "fk_movies_rating" FOREIGN KEY("rating")
-REFERENCES "rating" ("rating");
+ALTER TABLE "director_movie" ADD CONSTRAINT "fk_director_movie_director_id" FOREIGN KEY("director_id")
+REFERENCES "director" ("director_id");
 
-ALTER TABLE "director" ADD CONSTRAINT "fk_director_movie_id" FOREIGN KEY("movie_id")
+ALTER TABLE "director_movie" ADD CONSTRAINT "fk_director_movie_movie_id" FOREIGN KEY("movie_id")
 REFERENCES "movies" ("movie_id");
 
-ALTER TABLE "rating" ADD CONSTRAINT "fk_rating_movie_id" FOREIGN KEY("movie_id")
+ALTER TABLE "company_movie" ADD CONSTRAINT "fk_company_movie_company_id" FOREIGN KEY("company_id")
+REFERENCES "company" ("company_id");
+
+ALTER TABLE "company_movie" ADD CONSTRAINT "fk_company_movie_movie_id" FOREIGN KEY("movie_id")
 REFERENCES "movies" ("movie_id");
 
-ALTER TABLE "country" ADD CONSTRAINT "fk_country_movie_id" FOREIGN KEY("movie_id")
-REFERENCES "movies" ("movie_id");
+ALTER TABLE "actor_movie" ADD CONSTRAINT "fk_actor_movie_actor_id" FOREIGN KEY("actor_id")
+REFERENCES "actor" ("actor_id");
 
-ALTER TABLE "genre" ADD CONSTRAINT "fk_genre_movie_id" FOREIGN KEY("movie_id")
-REFERENCES "movies" ("movie_id");
-
-ALTER TABLE "company" ADD CONSTRAINT "fk_company_movie_id" FOREIGN KEY("movie_id")
-REFERENCES "movies" ("movie_id");
-
-ALTER TABLE "writer" ADD CONSTRAINT "fk_writer_movie_id" FOREIGN KEY("movie_id")
-REFERENCES "movies" ("movie_id");
-
-ALTER TABLE "actor" ADD CONSTRAINT "fk_actor_movie_id" FOREIGN KEY("movie_id")
+ALTER TABLE "actor_movie" ADD CONSTRAINT "fk_actor_movie_movie_id" FOREIGN KEY("movie_id")
 REFERENCES "movies" ("movie_id");
 
